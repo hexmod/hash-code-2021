@@ -48,15 +48,27 @@ def main(file_location, output_location):
     print(f"Created {len(streets)} streets")
     print(f"Created {len(cars)} cars")
 
+    # Check street usage
+    for a_car in cars:
+        for street_name in a_car.roads:
+            for a_street in streets:
+                if a_street.name == street_name:
+                    a_street.add_usage()
+                    break
 
+    # Check inter usage
+    used_intersections = list(filter(lambda x: x.ever_used(), intersections))
+    
     # Output
     output_file = open(output_location, "w")
-    output_file.write(f"{str(len(intersections))}\n")
-    for inter in intersections:
+    output_file.write(f"{str(len(used_intersections))}\n")
+    for inter in used_intersections:
         output_file.write(f"{str(inter.id)}\n")
-        output_file.write(f"{str(inter.num_incoming_streets())}\n")
-        for street in inter.incoming_streets:
-            output_file.write(f"{street.name} 2\n")
+        used_streets = list(filter(lambda x: x.usage > 0, inter.incoming_streets))
+
+        output_file.write(f"{str(len(used_streets))}\n")
+        for street in used_streets:
+            output_file.write(f"{street.name} 1\n")
 
     output_file.close()
 
