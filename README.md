@@ -1,6 +1,6 @@
 # Hash Code 2021
 
-Helper scripts for running hash code problems.
+Our 2021 Google Hash Code Entry
 
 ## Usage
 * Save the competition data files in the data folder
