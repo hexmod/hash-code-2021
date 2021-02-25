@@ -2,6 +2,10 @@
 
 Our 2021 Google Hash Code Entry
 
+**Rank**
+* UK: 12th
+* Worldwide: 335th
+
 ## Usage
 * Save the competition data files in the data folder
 * `pipenv install` - Install dependancies
