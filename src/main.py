@@ -7,6 +7,7 @@
 ###############################
 import sys
 import os
+import math
 from .utils.car import Car
 from .utils.street import Street
 from .utils.intersection import Intersection
@@ -64,8 +65,15 @@ def main(file_location, output_location):
         output_file.write(f"{str(len(used_streets))}\n")
 
         used_streets.sort(key=lambda x: x.starting_cars, reverse=True)
+        total_inter_usage = 0
         for street in used_streets:
-            output_file.write(f"{street.name} 1\n")
+            total_inter_usage += street.usage
+
+        t = duration / 10
+        for street in used_streets:
+            fraction = street.usage / total_inter_usage
+            green_time = max(1, math.floor(t * fraction))
+            output_file.write(f"{street.name} {green_time}\n")
 
     output_file.close()
 
