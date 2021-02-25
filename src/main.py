@@ -61,8 +61,9 @@ def main(file_location, output_location):
     for inter in used_intersections:
         output_file.write(f"{str(inter.id)}\n")
         used_streets = list(filter(lambda x: x.usage > 0, inter.incoming_streets))
-
         output_file.write(f"{str(len(used_streets))}\n")
+
+        used_streets.sort(key=lambda x: x.starting_cars, reverse=True)
         for street in used_streets:
             output_file.write(f"{street.name} 1\n")
 
