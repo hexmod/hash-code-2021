@@ -9,3 +9,6 @@ class Intersection:
 
     def add_incoming_street(self, street):
         self.incoming_streets.append(street)
+
+    def num_incoming_streets(self):
+        return len(self.incoming_streets)

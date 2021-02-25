@@ -49,6 +49,18 @@ def main(file_location, output_location):
     print(f"Created {len(cars)} cars")
 
 
+    # Output
+    output_file = open(output_location, "w")
+    output_file.write(f"{str(len(intersections))}\n")
+    for inter in intersections:
+        output_file.write(f"{str(inter.id)}\n")
+        output_file.write(f"{str(inter.num_incoming_streets())}\n")
+        for street in inter.incoming_streets:
+            output_file.write(f"{street.name} 2\n")
+
+    output_file.close()
+
+
 
 def create_intersections(num):
     intersections = []

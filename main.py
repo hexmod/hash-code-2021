@@ -21,15 +21,15 @@ def run():
         
         if action == "allFiles":
             for a_file in files:
-                runForFile(os.path.join(DATA_LOCATION, a_file), OUTPUT_LOCATION)
+                runForFile(os.path.join(DATA_LOCATION, a_file), os.path.join(OUTPUT_LOCATION, a_file))
         elif action == "zip":
             zipProject(OUTPUT_LOCATION)
         elif action == "allFilesAndZip":
             for a_file in files:
-                runForFile(os.path.join(DATA_LOCATION, a_file), OUTPUT_LOCATION)
+                runForFile(os.path.join(DATA_LOCATION, a_file), os.path.join(OUTPUT_LOCATION, a_file))
             zipProject(OUTPUT_LOCATION)
         else:
-            runForFile(os.path.join(DATA_LOCATION, action), OUTPUT_LOCATION)
+            runForFile(os.path.join(DATA_LOCATION, action), os.path.join(OUTPUT_LOCATION, action))
 
 
 def getAction(files):
