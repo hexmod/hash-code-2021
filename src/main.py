@@ -86,21 +86,27 @@ def add_street_usage(cars, streets, file_location):
         input_file = open(file_name, "r")
         count = 0
         for line in input_file:
-            streets[count].set_usage(int(line))
+            values = line.split(" ")
+            streets[count].set_usage(int(values[0]))
+            streets[count].set_starting_cars(int(values[1]))
             count += 1
     else:
         print("Writing Cache")
         for a_car in cars:
+            first = True
             for street_name in a_car.roads:
                 for a_street in streets:
                     if a_street.name == street_name:
                         a_street.add_usage()
+                        if first:
+                            a_street.add_starting_cars()
                         break
+                first = False
 
         # Write street usage to file as cache
         output_file = open(file_name, "w")
         for s in streets:
-            output_file.write(f"{s.usage}\n")
+            output_file.write(f"{s.usage} {s.starting_cars}\n")
 
 
 # When run from the terminal
