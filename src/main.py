@@ -69,7 +69,7 @@ def main(file_location, output_location):
         for street in used_streets:
             total_inter_usage += street.usage
 
-        t = duration / 10
+        t = duration / 214
         for street in used_streets:
             fraction = street.usage / total_inter_usage
             green_time = max(1, math.floor(t * fraction))
