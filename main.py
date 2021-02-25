@@ -51,8 +51,8 @@ def getAction(files):
     while choice == "":
        print("")
        # Reload our source incase we have made any changes
-       importlib.reload(hashCodeImpl)
        choice = input()
+       importlib.reload(hashCodeImpl)
     action = options[int(choice)-1]
     return action
 
