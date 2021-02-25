@@ -1,4 +1,4 @@
-# Hash Code Helper
+# Hash Code 2021
 
 Helper scripts for running hash code problems.
 
