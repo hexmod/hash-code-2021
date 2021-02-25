@@ -27,13 +27,13 @@ def main(file_location, output_location):
     cars = []
     for line in input_file:
         if line_num == 0:
-           numbers = line.split(" ")
-           duration = int(numbers[0])
-           num_intersections = int(numbers[1])
-           num_streets = int(numbers[2])
-           num_cars = int(numbers[3])
-           bonus = int(numbers[4])
-           intersections = create_intersections(num_intersections)
+            numbers = line.split(" ")
+            duration = int(numbers[0])
+            num_intersections = int(numbers[1])
+            num_streets = int(numbers[2])
+            num_cars = int(numbers[3])
+            bonus = int(numbers[4])
+            intersections = create_intersections(num_intersections)
         elif line_num <= num_streets:
             street_info = line.split(" ")
             a_street = Street(street_info[2], int(street_info[3]))
