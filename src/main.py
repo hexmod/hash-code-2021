@@ -6,6 +6,7 @@
 ##
 ###############################
 import sys
+import os
 from .utils.car import Car
 from .utils.street import Street
 from .utils.intersection import Intersection
@@ -49,12 +50,7 @@ def main(file_location, output_location):
     print(f"Created {len(cars)} cars")
 
     # Check street usage
-    for a_car in cars:
-        for street_name in a_car.roads:
-            for a_street in streets:
-                if a_street.name == street_name:
-                    a_street.add_usage()
-                    break
+    add_street_usage(cars, streets, file_location)
 
     # Check inter usage
     used_intersections = list(filter(lambda x: x.ever_used(), intersections))
@@ -79,6 +75,32 @@ def create_intersections(num):
     for i in range(num):
         intersections.append(Intersection(i))
     return intersections
+
+
+def add_street_usage(cars, streets, file_location):
+    head_tail = os.path.split(file_location) 
+    file_name = os.path.join(".\cache", head_tail[1])
+
+    if os.path.isfile(file_name):
+        print("Using Cache")
+        input_file = open(file_name, "r")
+        count = 0
+        for line in input_file:
+            streets[count].set_usage(int(line))
+            count += 1
+    else:
+        print("Writing Cache")
+        for a_car in cars:
+            for street_name in a_car.roads:
+                for a_street in streets:
+                    if a_street.name == street_name:
+                        a_street.add_usage()
+                        break
+
+        # Write street usage to file as cache
+        output_file = open(file_name, "w")
+        for s in streets:
+            output_file.write(f"{s.usage}\n")
 
 
 # When run from the terminal

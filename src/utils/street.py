@@ -9,3 +9,6 @@ class Street:
 
     def add_usage(self):
         self.usage += 1
+
+    def set_usage(self, usage):
+        self.usage = usage
